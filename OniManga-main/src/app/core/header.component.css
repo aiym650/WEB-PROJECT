@@ -1,0 +1,158 @@
+.header {
+  background-color: #80CFA9; /* Твой зеленый фон */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  color: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding-left: 60px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Кнопки авторизации */
+.auth-group {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-auth {
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  padding: 6px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.signup {
+  background-color: white;
+  color: #80CFA9;
+  font-weight: bold;
+}
+
+.btn-auth:hover {
+  opacity: 0.8;
+}
+
+/* Аватарка */
+.profile-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  background-color: #4C6663; /* Темный контрастный цвет */
+  border: 2px solid white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-exit {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+
+.cart-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.search-container {
+  background-color: white; /* Или оставь прозрачным, если хочешь на зеленом фоне */
+  padding: 10px 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-box {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  border: 1px solid #ccc;
+  height: 40px;
+  border-radius: 4px; /* Легкое скругление */
+  overflow: hidden;
+}
+
+.category-select {
+  background-color: #e0e0e0;
+  color: #333;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-right: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.arrow {
+  margin-left: 8px;
+  font-size: 12px;
+}
+
+.search-box input {
+  flex: 1; /* Поле занимает всё свободное место */
+  border: none;
+  padding: 0 15px;
+  font-size: 14px;
+  outline: none;
+}
+
+.search-btn {
+  background-color: #4C6663; /* Темный цвет как на скрине */
+  border: none;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.search-btn:hover {
+  background-color: #3a4d4b;
+}
+
+.search-icon {
+  color: white;
+  font-size: 18px;
+}

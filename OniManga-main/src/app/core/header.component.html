@@ -1,0 +1,28 @@
+<header class="header">
+  <div class="header-left">
+    <h1 class="logo" routerLink="/">OniManga</h1>
+    <nav class="nav-links">
+      <a routerLink="/manga">Manga List</a>
+    </nav>
+  </div>
+
+  <div class="header-right">
+    <div class="auth-group" *ngIf="!authService.isAuthenticated(); else loggedIn">
+      <button class="btn-auth login" routerLink="/login">Login</button>
+      <button class="btn-auth signup" routerLink="/register">Sign Up</button>
+    </div>
+
+    <ng-template #loggedIn>
+      <div class="profile-box">
+        <div class="avatar" routerLink="/profile">
+          {{ authService.getUsername()[0] | uppercase }}
+        </div>
+        <button class="btn-exit" (click)="authService.logout()">Exit</button>
+      </div>
+    </ng-template>
+
+    <a routerLink="/cart" class="cart-link">
+      🛒 <span class="cart-count">{{ cartService.getCount() }}</span>
+    </a>
+  </div>
+</header>

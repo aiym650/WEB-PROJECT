@@ -1,0 +1,24 @@
+<div class="cart-page">
+    <h2>Your Cart</h2>
+  
+    <div *ngIf="items.length; else empty">
+      <ul>
+        <li *ngFor="let item of items">
+          <div class="title">{{ item.title }}</div>
+          <div class="price">${{ item.price }}</div>
+        </li>
+      </ul>
+  
+      <div class="total">
+        <span>Total:</span>
+        <strong>${{ total }}</strong>
+      </div>
+  
+      <button (click)="clearCart()">Clear Cart</button>
+    </div>
+  
+    <ng-template #empty>
+      <p class="empty-msg">Your cart is empty.</p>
+    </ng-template>
+  </div>
+  

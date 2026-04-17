@@ -1,0 +1,38 @@
+<div
+    style="display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 80px); width: 100%; background-color: #f0f2f5; padding: 20px; box-sizing: border-box;">
+
+    <div
+        style="background: white; padding: 40px; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center;">
+
+        <h2 style="color: #4C6663; margin-bottom: 30px; font-family: sans-serif; font-size: 24px;">Login</h2>
+
+        <form (ngSubmit)="login()">
+            <div style="margin-bottom: 20px; text-align: left;">
+                <label
+                    style="display: block; margin-bottom: 8px; color: #666; font-weight: bold; font-family: sans-serif;">Username</label>
+                <input [(ngModel)]="username" name="username" required
+                    style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px;">
+            </div>
+
+            <div style="margin-bottom: 20px; text-align: left;">
+                <label
+                    style="display: block; margin-bottom: 8px; color: #666; font-weight: bold; font-family: sans-serif;">Password</label>
+                <input [(ngModel)]="password" name="password" type="password" required
+                    style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px;">
+            </div>
+
+            <button type="submit"
+                style="width: 100%; padding: 14px; background-color: #80CFA9; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s;">
+                Sign In
+            </button>
+        </form>
+
+        <div style="margin-top: 25px; font-size: 14px; color: #777; font-family: sans-serif;">
+            New here?
+            <a routerLink="/register"
+                style="color: #80CFA9; text-decoration: none; font-weight: bold; cursor: pointer;">
+                Sign Up
+            </a>
+        </div>
+    </div>
+</div>

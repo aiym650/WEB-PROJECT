@@ -1,0 +1,19 @@
+<div class="manga-container">
+    <div class="manga-card" *ngFor="let manga of mangaList">
+      <img [src]="manga.imageUrl" alt="{{ manga.title }}" />
+      <div class="manga-info">
+        <h3>{{ manga.title }}</h3>
+        <p class="genre">{{ manga.genre }}</p>
+        <p class="author">By {{ manga.author }}</p>
+        <p class="desc">{{ manga.description }}</p>
+        <div class="price-buy">
+          <span class="price">${{ manga.price }}</span>
+          <div class="actions">
+            <button (click)="goToDetails(manga.id)">Details</button>
+            <button (click)="addToCart(manga)">🛒</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
