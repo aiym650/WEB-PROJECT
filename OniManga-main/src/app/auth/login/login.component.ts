@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ToastService } from '../../core/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,11 @@ export class LoginComponent {
   username = '';
   password = '';
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private toastService: ToastService
+  ) {}
 
   login() {
     this.auth.login({ username: this.username, password: this.password }).subscribe({
@@ -22,7 +27,7 @@ export class LoginComponent {
         this.router.navigate(['/manga']);
       },
       error: () => {
-        alert('Invalid credentials');
+        this.toastService.show('Invalid credentials');
       }
     });
   }

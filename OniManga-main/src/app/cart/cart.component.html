@@ -1,24 +1,40 @@
 <div class="cart-page">
-    <h2>Your Cart</h2>
-  
-    <div *ngIf="items.length; else empty">
-      <ul>
-        <li *ngFor="let item of items">
-          <div class="title">{{ item.title }}</div>
-          <div class="price">${{ item.price }}</div>
-        </li>
-      </ul>
-  
-      <div class="total">
-        <span>Total:</span>
-        <strong>${{ total }}</strong>
-      </div>
-  
-      <button (click)="clearCart()">Clear Cart</button>
+  <h2>Your Cart</h2>
+
+  <div *ngIf="groupedItems.length; else empty">
+    <ul>
+      <li *ngFor="let item of groupedItems">
+        <div class="title">{{ item.manga.title }}</div>
+
+        <div class="quantity-controls">
+          <button class="qty-btn" (click)="removeOne(item.manga)">-</button>
+          <span class="qty">{{ item.quantity }}</span>
+          <button class="qty-btn" (click)="addOne(item.manga)">+</button>
+        </div>
+
+        <div class="price">
+          ${{ (item.manga.price * item.quantity) | number:'1.2-2' }}
+        </div>
+      </li>
+    </ul>
+
+    <div class="total">
+      <span>Total:</span>
+      <strong>${{ total | number:'1.2-2' }}</strong>
     </div>
-  
-    <ng-template #empty>
-      <p class="empty-msg">Your cart is empty.</p>
-    </ng-template>
+
+    <div class="cart-actions">
+      <button class="clear-btn" (click)="clearCart()">
+        Clear Cart
+      </button>
+
+      <button class="checkout-btn" (click)="goToCheckout()">
+        Proceed to Checkout
+      </button>
+    </div>
   </div>
-  
+
+  <ng-template #empty>
+    <p class="empty-msg">Your cart is empty.</p>
+  </ng-template>
+</div>

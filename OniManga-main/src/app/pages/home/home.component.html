@@ -1,1 +1,39 @@
-<p>home works!</p>
+<div class="search-bar">
+  <input
+    type="text"
+    [(ngModel)]="searchText"
+    (input)="onSearch()"
+    placeholder="Search manga..."
+  />
+
+  <button type="button">🔍</button>
+</div>
+
+
+<div class="manga-container">
+
+  <div class="manga-card" *ngFor="let manga of filteredManga">
+
+    <img [src]="manga.imageUrl" [alt]="manga.title">
+
+    <div class="manga-info">
+
+      <h3>{{ manga.title }}</h3>
+
+      <p>{{ manga.genre }}</p>
+
+      <p>By {{ manga.author }}</p>
+
+      <p>{{ manga.description }}</p>
+
+      <h4>${{ manga.price }}</h4>
+
+      <button>Details</button>
+
+      <button>🛒</button>
+
+    </div>
+
+  </div>
+
+</div>

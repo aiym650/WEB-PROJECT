@@ -1,0 +1,108 @@
+.contact-page{
+min-height:100vh;
+text-align:center;
+padding:60px 20px;
+background:linear-gradient(to bottom,#f4fff9,#ffffff);
+}
+
+h1{
+font-size:38px;
+color:#2f7f68;
+margin-bottom:10px;
+}
+
+.subtitle{
+font-size:17px;
+color:#666;
+margin-bottom:35px;
+}
+
+.social-container{
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
+}
+
+.social-card{
+width:150px;
+padding:22px;
+background:white;
+border-radius:18px;
+text-decoration:none;
+box-shadow:0 6px 16px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.social-card:hover{
+transform:translateY(-6px);
+}
+
+.social-card img{
+width:48px;
+height:48px;
+margin-bottom:12px;
+}
+
+.social-card span{
+display:block;
+font-size:18px;
+font-weight:600;
+color:#1f3340;
+}
+.location-section{
+margin-top:70px;
+}
+
+.location-section h2{
+font-size:30px;
+color:#2f7f68;
+margin-bottom:25px;
+}
+
+.map-card{
+display:block;
+max-width:520px;
+margin:auto;
+position:relative;
+border-radius:22px;
+overflow:hidden;
+box-shadow:0 10px 24px rgba(0,0,0,0.12);
+transition:0.3s;
+text-decoration:none;
+}
+
+.map-card:hover{
+transform:translateY(-8px);
+}
+
+.map-card img{
+width:100%;
+height:280px;
+object-fit:cover;
+display:block;
+}
+
+.map-overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.35);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+color:white;
+}
+
+.pin{
+background:#74c69d;
+padding:12px 20px;
+border-radius:30px;
+font-size:22px;
+font-weight:bold;
+margin-bottom:12px;
+}
+
+.map-overlay p{
+font-size:18px;
+}

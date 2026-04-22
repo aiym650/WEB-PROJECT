@@ -1,1 +1,43 @@
-<p>shipping-policy works!</p>
+<div class="shipping-page">
+  <div class="shipping-box">
+    <h1>Shipping Policy</h1>
+
+    <div class="city-card">
+      <label>Select city</label>
+
+      <select [(ngModel)]="selectedCity" (change)="updateShippingInfo()">
+        <option value="">Choose a city</option>
+        <option *ngFor="let city of cities" [value]="city">
+          {{ city }}
+        </option>
+      </select>
+    </div>
+
+    <div class="result-card" *ngIf="selectedCity">
+      <p><strong>City:</strong> {{ selectedCity }}</p>
+      <p><strong>Delivery price:</strong> {{ deliveryPrice }}</p>
+      <p><strong>Shipped:</strong> {{ shippingTime }}</p>
+      <p><strong>Arrival:</strong> {{ arrivalTime }}</p>
+    </div>
+
+    <div class="map-card">
+      <h2>Kazakhstan Delivery Map</h2>
+
+      <div class="map-frame">
+        <iframe
+          src="https://www.google.com/maps?q=Kazakhstan&output=embed"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <a
+      class="whatsapp-btn"
+      href="https://wa.me/77771234567"
+      target="_blank"
+    >
+      WhatsApp
+    </a>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="profile-page">
+  <div class="profile-header-card">
+    <div class="avatar">
+      {{ username.charAt(0).toUpperCase() }}
+    </div>
+
+    <div class="user-info">
+      <h2>{{ username }}</h2>
+      <p *ngIf="email">{{ email }}</p>
+      <span class="member-badge">OniManga Member</span>
+    </div>
+
+    <div class="logout-box">
+      <button class="logout-btn" (click)="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="profile-grid">
+    <div class="profile-card">
+      <h3>Account Balance</h3>
+      <p class="balance-amount">${{ balance.toFixed(2) }}</p>
+    </div>
+
+    <div class="profile-card">
+      <h3>Purchase History</h3>
+
+      <div *ngIf="purchases.length > 0; else noPurchases">
+        <div class="purchase-item" *ngFor="let item of purchases">
+          <div>
+            <p class="manga-title">{{ item.title }}</p>
+            <p>Order ID: {{ item.id }}</p>
+            <p>Date: {{ item.date }}</p>
+          </div>
+
+          <div class="purchase-right">
+            <p>${{ item.price }}</p>
+            <span class="paid-status">{{ item.status }}</span>
+
+            <button
+  *ngIf="!item.is_received"
+  (click)="confirmReceived(item)"
+  class="receive-btn"
+>
+  Confirm Received
+</button>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #noPurchases>
+        <p class="empty-text">No purchases yet</p>
+      </ng-template>
+    </div>
+
+    <div class="profile-card">
+      <h3>Shipping Info</h3>
+      <p><strong>Name:</strong> {{ shippingInfo.name }}</p>
+      <p><strong>Phone:</strong> {{ shippingInfo.phone }}</p>
+      <p><strong>Address:</strong> {{ shippingInfo.address }}</p>
+      <p><strong>City:</strong> {{ shippingInfo.city }}</p>
+    </div>
+  </div>
+</div>

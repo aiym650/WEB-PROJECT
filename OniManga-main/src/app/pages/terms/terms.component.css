@@ -1,0 +1,232 @@
+.terms-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(116, 198, 157, 0.18), transparent 30%),
+    linear-gradient(180deg, #f5fff9 0%, #eef8f3 45%, #ffffff 100%);
+  font-family: Arial, sans-serif;
+  color: #1f3340;
+}
+
+.terms-hero {
+  position: relative;
+  padding: 80px 20px 60px;
+  overflow: hidden;
+}
+
+.terms-hero::before,
+.terms-hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(109, 199, 178, 0.18);
+  filter: blur(10px);
+}
+
+.terms-hero::before {
+  width: 220px;
+  height: 220px;
+  top: -40px;
+  right: 8%;
+}
+
+.terms-hero::after {
+  width: 150px;
+  height: 150px;
+  bottom: 0;
+  left: 10%;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 10px 20px;
+  background: rgba(82, 183, 136, 0.14);
+  border: 1px solid rgba(82, 183, 136, 0.28);
+  border-radius: 999px;
+  color: #2f7f68;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 20px rgba(82, 183, 136, 0.08);
+}
+
+.hero-content h1 {
+  font-size: 56px;
+  line-height: 1.1;
+  margin: 0 0 16px;
+  color: #16324a;
+}
+
+.hero-content p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 19px;
+  line-height: 1.7;
+  color: #486070;
+}
+
+.terms-wrapper {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 10px 20px 80px;
+}
+
+.intro-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(116, 198, 157, 0.16);
+  border-radius: 28px;
+  padding: 34px;
+  box-shadow: 0 18px 40px rgba(27, 53, 71, 0.08);
+  margin-bottom: 34px;
+}
+
+.intro-panel h2 {
+  margin: 0 0 12px;
+  font-size: 32px;
+  color: #1b4d3f;
+}
+
+.intro-panel p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.9;
+  color: #415b68;
+}
+
+.manga-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+  margin-bottom: 34px;
+}
+
+.manga-card {
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fffb 100%);
+  border: 1px solid rgba(116, 198, 157, 0.16);
+  border-radius: 24px;
+  padding: 28px 24px 24px;
+  box-shadow: 0 12px 28px rgba(25, 48, 64, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.manga-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(90deg, #74c69d, #52b788, #6dc7b2);
+}
+
+.manga-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 32px rgba(25, 48, 64, 0.12);
+}
+
+.card-number {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #74c69d, #52b788);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
+  box-shadow: 0 10px 20px rgba(82, 183, 136, 0.2);
+  margin-bottom: 18px;
+}
+
+.manga-card h3 {
+  margin: 0 0 12px;
+  font-size: 24px;
+  color: #1f3340;
+}
+
+.manga-card p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #526977;
+}
+
+.notice-panel {
+  background: linear-gradient(135deg, #fff5dd, #fffaf0);
+  border: 1px solid rgba(244, 162, 97, 0.18);
+  border-left: 8px solid #f4a261;
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 14px 28px rgba(113, 80, 33, 0.08);
+  margin-bottom: 28px;
+}
+
+.notice-panel h2 {
+  margin: 0 0 10px;
+  color: #9a5a10;
+  font-size: 30px;
+}
+
+.notice-panel p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #7b5a2d;
+}
+
+.final-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+  padding: 28px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #74c69d, #52b788);
+  color: white;
+  box-shadow: 0 18px 36px rgba(82, 183, 136, 0.24);
+}
+
+.final-panel p {
+  margin: 0;
+  max-width: 760px;
+  font-size: 20px;
+  line-height: 1.8;
+  font-weight: 600;
+}
+
+.spark {
+  font-size: 28px;
+  opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 40px;
+  }
+
+  .hero-content p {
+    font-size: 17px;
+  }
+
+  .intro-panel,
+  .notice-panel,
+  .final-panel {
+    padding: 24px;
+  }
+
+  .final-panel {
+    flex-direction: column;
+  }
+}

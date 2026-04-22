@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core'; // Добавили OnInit
+import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { filter } from 'rxjs/operators';
 import { HeaderComponent } from './core/header.component';
-import { MangaService } from './services/manga.service'; // 1. Импортируем наш новый сервис
+import { MangaService } from './services/manga.service';
+import { ToastService } from './core/toast.service';
+import { SearchService } from './core/search.service';
 
 @Component({
   selector: 'app-root',
@@ -11,23 +14,35 @@ import { MangaService } from './services/manga.service'; // 1. Импортир�
   imports: [
     CommonModule,
     RouterModule,
-    HeaderComponent
+    HeaderComponent,
+    FormsModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit { // 2. Добавили implements OnInit
+export class AppComponent implements OnInit {
   showSearch = false;
   isMenuOpen = false;
-  mangas: any[] = []; // 3. Сюда сохраним список манги из базы
+  mangas: any[] = [];
+  searchText: string = '';
+  toastMessage = '';
 
-  // 4. Добавляем mangaService в конструктор рядом с router
-  constructor(private router: Router, private mangaService: MangaService) {
+  constructor(
+    private router: Router,
+    private mangaService: MangaService,
+    private toastService: ToastService,
+    private searchService: SearchService
+  ) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      const url = this.router.url;
-      this.showSearch = !(url.includes('login') || url.includes('register'));
+    ).subscribe((event: NavigationEnd) => {
+      const url = event.urlAfterRedirects;
+
+      this.showSearch =
+        url === '/' ||
+        url === '/home' ||
+        url === '/manga' ||
+        url === '/categories';
     });
   }
 
@@ -35,16 +50,31 @@ export class AppComponent implements OnInit { // 2. Добавили implements 
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  // 5. Этот метод сработает сразу при запуске сайта
+  onSearch() {
+    const value = this.searchText.trim();
+    this.searchService.setSearchText(value);
+  }
+
   ngOnInit() {
+    this.toastService.toastMessage$.subscribe(message => {
+      this.toastMessage = message;
+    });
+
     this.mangaService.getMangas().subscribe({
       next: (data: any) => {
-        this.mangas = data; // Сохраняем "Наруто" в переменную
+        this.mangas = data;
         console.log('Данные из Django получены:', data);
       },
       error: (err) => {
         console.error('Ошибка связи с бэкендом:', err);
       }
     });
+
+    const currentUrl = this.router.url;
+    this.showSearch =
+      currentUrl === '/' ||
+      currentUrl === '/home' ||
+      currentUrl === '/manga' ||
+      currentUrl === '/categories';
   }
 }

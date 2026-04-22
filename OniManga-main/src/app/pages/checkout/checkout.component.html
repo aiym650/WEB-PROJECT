@@ -1,0 +1,207 @@
+<div class="checkout-page">
+  <h1>Checkout</h1>
+
+  <div class="delivery-card">
+    <h2>Delivery Method</h2>
+
+    <div class="delivery-options">
+      <label
+        class="delivery-option"
+        [class.active]="deliveryType === 'delivery'"
+      >
+        <input
+          type="radio"
+          name="deliveryType"
+          [(ngModel)]="deliveryType"
+          value="delivery"
+          required
+        />
+        <div class="delivery-option-content">
+          <h3>Delivery</h3>
+          <p>Courier delivery to your address</p>
+        </div>
+      </label>
+
+      <label
+        class="delivery-option"
+        [class.active]="deliveryType === 'pickup'"
+      >
+        <input
+          type="radio"
+          name="deliveryType"
+          [(ngModel)]="deliveryType"
+          value="pickup"
+        />
+        <div class="delivery-option-content">
+          <h3>Pickup</h3>
+          <p>Pick up your order yourself</p>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <form #checkoutForm="ngForm" (ngSubmit)="payNow(checkoutForm)">
+    <div class="checkout-grid">
+      <div class="checkout-card" *ngIf="isDelivery()">
+        <h2>Shipping Information</h2>
+
+        <input
+          [(ngModel)]="fullName"
+          name="fullName"
+          #fullNameRef="ngModel"
+          placeholder="Enter your full name"
+          required
+          pattern="^[A-Za-zА-Яа-яӘәҒғҚқҢңӨөҰұҮүІі\s]{2,}$"
+          [class.invalid]="fullNameRef.invalid && fullNameRef.touched"
+        />
+        <div class="error" *ngIf="fullNameRef.invalid && fullNameRef.touched">
+          Enter a valid full name.
+        </div>
+
+        <input
+          [(ngModel)]="phone"
+          name="phone"
+          #phoneRef="ngModel"
+          placeholder="+7 777 123 45 67"
+          required
+          pattern="^\+7\s\d{3}\s\d{3}\s\d{2}\s\d{2}$"
+          (input)="formatPhone()"
+          [class.invalid]="phoneRef.invalid && phoneRef.touched"
+        />
+        <div class="error" *ngIf="phoneRef.invalid && phoneRef.touched">
+          Enter phone in format: +7 777 123 45 67
+        </div>
+
+        <input
+          [(ngModel)]="address"
+          name="address"
+          #addressRef="ngModel"
+          placeholder="Street, building, apartment"
+          required
+          minlength="5"
+          [class.invalid]="addressRef.invalid && addressRef.touched"
+        />
+        <div class="error" *ngIf="addressRef.invalid && addressRef.touched">
+          Enter a valid address.
+        </div>
+
+        <input
+          [(ngModel)]="city"
+          name="city"
+          #cityRef="ngModel"
+          placeholder="Almaty"
+          required
+          minlength="2"
+          [class.invalid]="cityRef.invalid && cityRef.touched"
+        />
+        <div class="error" *ngIf="cityRef.invalid && cityRef.touched">
+          Enter city name.
+        </div>
+      </div>
+
+      <div class="checkout-card" *ngIf="isPickup()">
+  <h2>Pickup Information</h2>
+
+  <p class="pickup-info">
+    You can pick up your order at our store.
+  </p>
+
+  <a 
+    href="https://2gis.kz/almaty/firm/70000001034505578/76.934757%2C43.233699" 
+    target="_blank"
+    class="pickup-map-link"
+  >
+    <div class="pickup-map">
+      <div class="pickup-badge">
+        📍 OniManga Store
+      </div>
+
+      <div class="pickup-content">
+        <h3>OniManga Store</h3>
+        <p>Seifullin Avenue 617-Forum</p>
+        <span>Open in 2GIS</span>
+      </div>
+    </div>
+  </a>
+</div>
+
+      <div class="checkout-card">
+        <h2>Payment Details</h2>
+
+        <input
+          [(ngModel)]="cardName"
+          name="cardName"
+          #cardNameRef="ngModel"
+          placeholder="Name as shown on card"
+          required
+          pattern="^[A-Za-z\s]{2,}$"
+          [class.invalid]="cardNameRef.invalid && cardNameRef.touched"
+        />
+        <div class="error" *ngIf="cardNameRef.invalid && cardNameRef.touched">
+          Enter a valid card holder name.
+        </div>
+
+        <input
+          [(ngModel)]="cardNumber"
+          name="cardNumber"
+          #cardNumberRef="ngModel"
+          placeholder="1234 5678 9012 3456"
+          required
+          pattern="^(\d{4}\s){3}\d{4}$"
+          (input)="formatCardNumber()"
+          [class.invalid]="cardNumberRef.invalid && cardNumberRef.touched"
+        />
+        <div class="error" *ngIf="cardNumberRef.invalid && cardNumberRef.touched">
+          Card number must contain 16 digits.
+        </div>
+
+        <input
+          [(ngModel)]="expiryDate"
+          name="expiryDate"
+          #expiryDateRef="ngModel"
+          placeholder="MM/YY"
+          required
+          pattern="^(0[1-9]|1[0-2])\/\d{2}$"
+          (input)="formatExpiryDate()"
+          [class.invalid]="expiryDateRef.invalid && expiryDateRef.touched"
+        />
+        <div class="error" *ngIf="expiryDateRef.invalid && expiryDateRef.touched">
+          Enter expiry date in format MM/YY.
+        </div>
+
+        <input
+          [(ngModel)]="cvv"
+          name="cvv"
+          #cvvRef="ngModel"
+          placeholder="123"
+          type="password"
+          required
+          pattern="^\d{3}$"
+          (input)="formatCvv()"
+          [class.invalid]="cvvRef.invalid && cvvRef.touched"
+        />
+        <div class="error" *ngIf="cvvRef.invalid && cvvRef.touched">
+          CVV must contain 3 digits.
+        </div>
+      </div>
+    </div>
+
+    <div class="order-summary-card">
+      <h2>Order Summary</h2>
+
+      <div class="order-item" *ngFor="let item of orderItems">
+        <span>{{ item.title }}</span>
+        <span>${{ item.price | number:'1.2-2' }}</span>
+      </div>
+
+      <div class="total-row">
+        <strong>Total</strong>
+        <strong>${{ totalPrice | number:'1.2-2' }}</strong>
+      </div>
+
+      <button class="pay-btn" type="submit">
+        Pay Now
+      </button>
+    </div>
+  </form>
+</div>

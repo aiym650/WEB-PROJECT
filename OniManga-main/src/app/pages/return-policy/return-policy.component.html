@@ -1,1 +1,71 @@
-<p>return-policy works!</p>
+<div class="return-page">
+  <div class="return-container">
+    <h1>Return & Refund</h1>
+    <p class="subtitle">
+      Return is available only within 14 days after receiving the manga.
+    </p>
+
+    <form class="return-form" (ngSubmit)="checkReturnEligibility()">
+      <label>Full Name</label>
+      <input
+        type="text"
+        [(ngModel)]="customerName"
+        name="customerName"
+        placeholder="Enter your full name"
+        required
+      />
+
+      <label>Order ID</label>
+      <input
+        type="text"
+        [(ngModel)]="orderId"
+        name="orderId"
+        placeholder="Enter your order ID"
+        required
+      />
+
+      <label>Manga Title</label>
+      <input
+        type="text"
+        [(ngModel)]="bookTitle"
+        name="bookTitle"
+        placeholder="Enter manga title"
+      />
+
+      <label>Date Received</label>
+      <input
+        type="date"
+        [(ngModel)]="receivedDate"
+        name="receivedDate"
+      />
+
+      <label>Reason for Return</label>
+      <textarea
+        [(ngModel)]="reason"
+        name="reason"
+        rows="4"
+        placeholder="Write the reason"
+        required
+      ></textarea>
+
+      <button type="submit">Request Refund</button>
+    </form>
+
+    <div class="result success" *ngIf="returnStatus === 'approved'">
+      <h3>Refund Completed</h3>
+      <p>Your refund has been successfully processed.</p>
+      <p>${{ refundAmount.toFixed(2) }} has been returned to your balance.</p>
+      <p>Your purchase will remain in history with status: Refunded.</p>
+    </div>
+
+    <div class="result error" *ngIf="returnStatus === 'denied'">
+      <h3>Return Denied</h3>
+      <p>Refund is only available within 14 days after receiving the manga.</p>
+    </div>
+
+    <div class="result error" *ngIf="returnStatus === 'not-found'">
+      <h3>Order Not Found</h3>
+      <p>We could not find this order in your purchase history.</p>
+    </div>
+  </div>
+</div>

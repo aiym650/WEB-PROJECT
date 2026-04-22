@@ -1,36 +1,90 @@
-<div (click)="toggleMenu()"
-  style="position: absolute; top: 22px; left: 15px; z-index: 2000; cursor: pointer; padding: 8px; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; display: flex; flex-direction: column; gap: 4px; background: rgba(255,255,255,0.1);">
+<div
+  (click)="toggleMenu()"
+  style="position: absolute; top: 22px; left: 15px; z-index: 2000; cursor: pointer; padding: 8px; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; display: flex; flex-direction: column; gap: 4px; background: rgba(255,255,255,0.1);"
+>
   <div style="width: 18px; height: 2px; background: white;"></div>
   <div style="width: 18px; height: 2px; background: white;"></div>
   <div style="width: 18px; height: 2px; background: white;"></div>
 </div>
 
-<div *ngIf="isMenuOpen"
-  style="position: absolute; top: 70px; left: 20px; z-index: 2000; background: white; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); min-width: 220px; overflow: hidden; py: 10px; display: flex; flex-direction: column;">
-  <a routerLink="/" (click)="isMenuOpen = false" class="menu-item">Home</a>
-  <a routerLink="/categories" (click)="isMenuOpen = false" class="menu-item">Categories</a>
-  <a routerLink="/about" (click)="isMenuOpen = false" class="menu-item">About Us</a>
-  <a routerLink="/return-policy" (click)="isMenuOpen = false" class="menu-item">Return & Replacement</a>
-  <a routerLink="/contact" (click)="isMenuOpen = false" class="menu-item">Contact Us</a>
-  <a routerLink="/shipping" (click)="isMenuOpen = false" class="menu-item">Shipping Policy</a>
-  <a routerLink="/terms" (click)="isMenuOpen = false" class="menu-item">Terms & Conditions</a>
+<div
+  *ngIf="isMenuOpen"
+  style="position: absolute; top: 70px; left: 20px; z-index: 2000; background: white; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); min-width: 220px; overflow: hidden; display: flex; flex-direction: column;"
+>
+  <a routerLink="/" (click)="isMenuOpen = false" class="side-menu-link">Home</a>
+  <a routerLink="/categories" (click)="isMenuOpen = false" class="side-menu-link">Categories</a>
+  <a routerLink="/about" (click)="isMenuOpen = false" class="side-menu-link">About Us</a>
+  <a routerLink="/return-policy" (click)="isMenuOpen = false" class="side-menu-link">Return & Replacement</a>
+  <a routerLink="/contact" (click)="isMenuOpen = false" class="side-menu-link">Contact Us</a>
+  <a routerLink="/shipping" (click)="isMenuOpen = false" class="side-menu-link">Shipping Policy</a>
+  <a routerLink="/terms" (click)="isMenuOpen = false" class="side-menu-link">Terms & Conditions</a>
 </div>
 
 <app-header></app-header>
 
-<div *ngIf="showSearch"
-  style="background-color: #f9f9f9; padding: 10px 40px; display: flex; justify-content: center; border-bottom: 1px solid #ddd;">
+<div
+  *ngIf="showSearch"
+  style="background-color: #f9f9f9; padding: 10px 40px; display: flex; justify-content: center; border-bottom: 1px solid #ddd;"
+>
   <div
-    style="display: flex; width: 100%; max-width: 1200px; height: 40px; border: 1px solid #ccc; border-radius: 4px; overflow: hidden; background: white;">
-    <input type="text" placeholder="Search by Title, Author or Keyword"
-      style="flex: 1; border: none; padding: 0 15px; outline: none; font-size: 14px;">
+    style="display: flex; width: 100%; max-width: 1200px; height: 40px; border: 1px solid #ccc; border-radius: 4px; overflow: hidden; background: white;"
+  >
+    <input
+      type="text"
+      [(ngModel)]="searchText"
+      (keyup.enter)="onSearch()"
+      placeholder="Search by Title, Author or Keyword"
+      style="flex: 1; border: none; padding: 0 15px; outline: none; font-size: 14px;"
+    />
+
     <button
-      style="background-color: #4C6663; border: none; width: 50px; cursor: pointer; display: flex; justify-content: center; align-items: center;">
+      (click)="onSearch()"
+      style="background-color: #4C6663; border: none; width: 50px; cursor: pointer; display: flex; justify-content: center; align-items: center;"
+    >
       <span style="color: white; font-size: 18px;">🔍</span>
     </button>
   </div>
 </div>
 
+<div class="toast" *ngIf="toastMessage">
+  {{ toastMessage }}
+</div>
+
 <main>
   <router-outlet></router-outlet>
 </main>
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3>OniManga</h3>
+      <p>Online manga store.</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Links</h4>
+      <a routerLink="/">Home</a>
+      <a routerLink="/categories">Categories</a>
+      <a routerLink="/about">About</a>
+      <a routerLink="/contact">Contact</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>Support</h4>
+      <a routerLink="/shipping">Shipping</a>
+      <a routerLink="/return-policy">Returns</a>
+      <a routerLink="/terms">Terms</a>
+    </div>
+
+    <div class="footer-column">
+      <h4>Contact</h4>
+      <p>support&#64;onimanga.com</p>
+      <p>+7 747 014 63 07</p>
+      <p>Almaty</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 OniManga</p>
+  </div>
+</footer>

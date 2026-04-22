@@ -5,6 +5,8 @@ import { AuthService } from '../auth/auth.service';
 import { CartService } from '../core/cart.service';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { ToastService } from '../core/toast.service';
+
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -19,18 +21,18 @@ export class HeaderComponent {
   constructor(
     public authService: AuthService,
     public router: Router,
-    public cartService: CartService
-  ) { }
+    public cartService: CartService,
+    private toastService: ToastService
+  ) {}
 
   login() {
     this.authService.login({ username: this.username, password: this.password }).subscribe({
       next: () => {
         console.log('Logged in successfully');
-        // Очищаем поля после входа
         this.username = '';
         this.password = '';
       },
-      error: () => alert('Wrong credentials!')
+      error: () => this.toastService.show('Wrong credentials!')
     });
   }
 
